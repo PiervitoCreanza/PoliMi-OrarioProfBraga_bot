@@ -13,10 +13,11 @@ const isToday = (someDate) => {
 };
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
+
 bot.start((ctx) => ctx.reply("Benvenuto!"));
 bot.help((ctx) => ctx.reply("Send me a sticker"));
-bot.hears("orario", (ctx) => {
-  console.log("ok");
+
+bot.command("orario_oggi", (ctx) => {
   getOrarioInformatica().then((data) => {
     let currentDate = data.filter((e) => isToday(e.date.parsed))[0];
     if (!currentDate.lessons.length) {
@@ -33,6 +34,7 @@ bot.hears("orario", (ctx) => {
       });
   });
 });
+
 bot.on("sticker", (ctx) => ctx.reply("👍"));
 bot.hears("hi", (ctx) => ctx.reply("Hey there"));
 bot.launch();
