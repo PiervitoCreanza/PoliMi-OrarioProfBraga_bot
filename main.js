@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { getOrarioInformatica } = require("./parser");
-
-const { Telegraf } = require("telegraf");
+const moment = require("moment");
+const { Telegraf, Scenes } = require("telegraf");
 
 const isToday = (someDate) => {
   const today = new Date();
@@ -34,6 +34,10 @@ bot.command("orario_oggi", (ctx) => {
       });
   });
 });
+
+bot.command("orario_giorno", ctx => {
+
+})
 
 bot.on("sticker", (ctx) => ctx.reply("👍"));
 bot.hears("hi", (ctx) => ctx.reply("Hey there"));
