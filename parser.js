@@ -11,20 +11,18 @@ Array.prototype.reFind = function (rx) {
   return [null, -1];
 };
 
-if (typeof Array.prototype.reFindAll === "undefined") {
-  Array.prototype.reFindAll = function (rx) {
-    let res = [];
-    for (var i in this) {
-      if (this[i].toString().match(rx)) {
-        res.push({
-          index: parseInt(i),
-          value: this[i],
-        });
-      }
+Array.prototype.reFindAll = function (rx) {
+  let res = [];
+  for (var i in this) {
+    if (this[i].toString().match(rx)) {
+      res.push({
+        index: parseInt(i),
+        value: this[i],
+      });
     }
-    return res;
-  };
-}
+  }
+  return res;
+};
 
 Array.prototype.reMatches = function (rx) {
   var nMatches = 0;
@@ -96,7 +94,10 @@ exports.getOrarioInformatica = () => {
                     matrix[m + 2][endTimeNotSliced];
                   if (name == " ") name = null;
 
-                  var teacherCode = matrix[m + 3][startTimeNotSliced] || null;
+                  var teacherCode =
+                    matrix[m + 3][startTimeNotSliced] ||
+                    matrix[m + 3][startTimeNotSliced - 1] ||
+                    null;
 
                   var duration = matrix[m + 3][endTimeNotSliced];
 
