@@ -70,7 +70,7 @@ exports.getOrarioInformatica = () => {
 
         let scrapedData = [];
         matrix.forEach((row, m) => {
-          let dates = row.reFindAll(/\d{2}-[A-Z][a-z]{2}/);
+          let dates = row.reFindAll(/\d{1,2}-[A-Z][a-z]{2}/);
 
           if (dates.length <= 0) {
             return;
